@@ -99,3 +99,14 @@ resource "aws_security_group" "allow_all" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+resource "aws_dynamodb_table" "state_locking" {
+  hash_key = "LockID"
+  name     = "dynamodb-state-locking"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+  billing_mode = "PAY_PER_REQUEST"
+}
